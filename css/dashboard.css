@@ -1,0 +1,129 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #d2b48c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #f5deb3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    color: #333;
+    font-size: 20px;
+}
+
+/* Profile Box */
+.profile-box {
+    background-color: #800000;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.profile-box a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+/* Menu Layout */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Adjust columns */
+.menu-column {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+/* Menu Items */
+.menu-item {
+    background-color: #800000;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item:hover {
+    background-color: #660000;
+}
+
+/* Icons Styling */
+.menu-item i {
+    font-size: 18px;
+    color: white;
+}
+
+/* Logout Button */
+#logoutBtn {
+    background-color: #800000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#logoutBtn:hover {
+    background-color: #660000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 0;
+    }
+    .menu-column {
+        width: 100%;
+    }
+    .menu-item {
+        justify-content: center;
+        text-align: center;
+        padding: 15px;
+    }
+}
