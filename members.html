@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members - Adi Goud Brahmin Mahasabha</title>
+    <link rel="stylesheet" href="./css/members.css">
+</head>
+<body>
+    <div class="main-container">
+        <button class="back-button" onclick="goBack()">
+            <img src="./icons/back.jpg" alt="Back">
+        </button>
+
+        <div class="content-box">
+            <input type="text" id="searchBar" placeholder="Search by name..." onkeyup="filterNames()">
+            <div class="member-list" id="memberList"></div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "dashboard.html"; // Redirects to dashboard.html
+        }
+    </script>
+    
+    <script src="./js/members.js"></script>
+</body>
+</html>

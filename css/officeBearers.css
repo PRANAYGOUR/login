@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #c7a777;
+    padding: 20px;
+    margin: 0;
+}
+
+.office-container {
+    max-width: 500px;
+    margin: auto;
+    background: #F5DEB3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Back Button */
+.back-button {
+    background: #600000;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background: #800000;
+}
+
+#officeBearersList {
+    margin-top: 20px;
+}
+
+/* Office Bearer Item */
+.office-bearer-item {
+    display: flex;
+    align-items: center;
+    background: #600000;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: white;
+    gap: 12px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.office-bearer-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.office-bearer-item .info {
+    text-align: left;
+    flex: 1;
+}
+
+.office-bearer-item h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.office-bearer-item p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Link Styling */
+.office-bearer-item a {
+    color: #ffdf91;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.office-bearer-item a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .office-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .office-bearer-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .office-bearer-item img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .office-bearer-item .info {
+        text-align: center;
+    }
+}

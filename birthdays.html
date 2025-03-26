@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthdays</title>
+    <link rel="stylesheet" href="./css/birthdays.css">
+</head>
+<body>
+    <div class="birthday-container">
+        <button class="back-button" onclick="goBack()">⬅ Back</button>
+        <h2>🎂 Today's Birthdays</h2>
+        <div id="todayBirthdays"></div>
+
+        <h2>📅 Select Month</h2>
+        <select id="monthSelect" onchange="filterByMonth()">
+            <option value="">All Months</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        
+
+        <h2>🎂 Birthday List</h2>
+        <div id="birthdayList"></div>
+    </div>
+
+    <script src="./js/birthdays.js"></script>
+</body>
+</html>

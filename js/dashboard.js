@@ -48,4 +48,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
         console.error("Error:", error.message);
     }
+
+    // ✅ Logout Functionality
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function () {
+            console.log("Logging out..."); // Debugging
+            localStorage.removeItem("userEmail"); // Remove login session
+            window.location.href = "login.html"; // Redirect to login
+        });
+    } else {
+        console.error("Logout button not found in the document.");
+    }
 });
