@@ -1,21 +1,27 @@
 async function loadAnniversaries(selectedMonth = "") {
     try {
-        const response = await fetch("./assets/filtered_members.csv");
-        const data = await response.text();
-        const rows = data.trim().split("\n").map(row => row.split(",").map(cell => cell.trim()));
+        const sheetID = "1qf9dzQUAgSateFjpU9fs6JYrjkIo9T1_peEiXSaMg5I";  // Replace with your actual Sheet ID
+        const apiKey = "AIzaSyC-vs4GAthKrNahNVJ6qwYZ0BFpAPAnad8";  // Replace with your actual API Key
+        const sheetName = "data";  // Change if your sheet name is different
+        const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`;
 
-        if (rows.length < 2) {
-            console.error("No data found in CSV.");
+        const response = await fetch(apiUrl);
+        const json = await response.json();
+
+        if (!json.values || json.values.length < 2) {
+            console.error("No data found in the Google Sheet.");
             return;
         }
 
+        const rows = json.values;
         const headers = rows[0];
-        const nameIndex = headers.indexOf("Name/नाम");
-        const phoneIndex = headers.indexOf("Phone No. of Applicant/आवेदक का फ़ोन नंबर");
-        const anniversaryIndex = headers.indexOf("Anniversary date/सालगिरह की तिथि");
+
+        const nameIndex = headers.indexOf("Name");
+        const phoneIndex = headers.indexOf("Phone");
+        const anniversaryIndex = headers.indexOf("Anniversary date");
 
         if (nameIndex === -1 || anniversaryIndex === -1) {
-            console.error("Required columns not found in CSV.");
+            console.error("Required columns not found in the sheet.");
             return;
         }
 
@@ -45,7 +51,7 @@ async function loadAnniversaries(selectedMonth = "") {
 
         displayAnniversaries(anniversaries, todayMonthDay, selectedMonth);
     } catch (error) {
-        console.error("Error loading CSV:", error);
+        console.error("Error loading data from Google Sheets:", error);
     }
 }
 
@@ -56,13 +62,13 @@ function displayAnniversaries(anniversaries, todayMonthDay, selectedMonth) {
     todayDiv.innerHTML = "";
     anniversaryListDiv.innerHTML = "";
 
-    let hasAnniversaries = false;
+    let hasTodayAnniversaries = false;
+    let hasMonthAnniversaries = false;
 
     anniversaries.forEach(member => {
         const isToday = member.anniversary === todayMonthDay;
         const isMatchingMonth = !selectedMonth || member.monthOnly === selectedMonth;
 
-        // Always show today's anniversaries at the top
         if (isToday || isMatchingMonth) {
             const div = document.createElement("div");
             div.classList.add("anniversary-item");
@@ -75,15 +81,19 @@ function displayAnniversaries(anniversaries, todayMonthDay, selectedMonth) {
 
             if (isToday) {
                 todayDiv.appendChild(div);
+                hasTodayAnniversaries = true;
             } else {
                 anniversaryListDiv.appendChild(div);
+                hasMonthAnniversaries = true;
             }
-
-            hasAnniversaries = true;
         }
     });
 
-    if (!hasAnniversaries) {
+    if (!hasTodayAnniversaries) {
+        todayDiv.innerHTML = "<p>No anniversaries today.</p>";
+    }
+
+    if (!hasMonthAnniversaries) {
         anniversaryListDiv.innerHTML = "<p>No anniversaries found for this month.</p>";
     }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+    <div class="container">
+        <button id="goBackBtn" class="back-button" onclick="goBack()">&#8592; Go Back</button>
+        <h1>Gallery</h1>
+        <div id="eventsContainer" class="events-grid"></div>
+        <div id="eventsContainer"></div>
+
+    </div>
+    <script src="js/gallery.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

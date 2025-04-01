@@ -1,0 +1,150 @@
+/* Basic body and global styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #c7a777; /* Same background color */
+    padding: 20px;
+    margin: 0;
+}
+
+.red-club-container {
+    max-width: 100%;
+    margin: auto;
+    background: #F5DEB3; /* Light container color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Blood group list container */
+#bloodGroupList {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Blood group item style */
+.blood-group-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #600000; /* Dark red theme */
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.blood-group-item:hover {
+    background: #800000; /* Darker red on hover */
+}
+
+.blood-group-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Blood group item list container */
+.blood-group-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Member details section */
+#bloodGroupDetails {
+    margin-top: 20px;
+}
+
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #600000; /* Dark red for member details */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.member-item img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Ensure the member items look good in smaller screens */
+.member-item span {
+    flex-grow: 1;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.member-item a {
+    display: flex;
+    align-items: center;
+}
+
+.member-item a img {
+    width: 25px;
+    height: 25px;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .blood-group-item {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .member-item {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .red-club-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .blood-group-item {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .member-item {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+
+    .member-item img {
+        width: 30px;
+        height: 30px;
+    }
+}

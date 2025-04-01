@@ -1,21 +1,27 @@
 async function loadBirthdays(selectedMonth = "") {
     try {
-        const response = await fetch("./assets/filtered_members.csv");
-        const data = await response.text();
-        const rows = data.trim().split("\n").map(row => row.split(",").map(cell => cell.trim()));
+        const sheetID = "1qf9dzQUAgSateFjpU9fs6JYrjkIo9T1_peEiXSaMg5I";  // Replace with your actual Sheet ID
+        const apiKey = "AIzaSyC-vs4GAthKrNahNVJ6qwYZ0BFpAPAnad8";  // Replace with your actual API Key
+        const sheetName = "data";  // Change if your sheet name is different
+        const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`;
 
-        if (rows.length < 2) {
-            console.error("No data found in CSV.");
+        const response = await fetch(apiUrl);
+        const json = await response.json();
+
+        if (!json.values || json.values.length < 2) {
+            console.error("No data found in the Google Sheet.");
             return;
         }
 
+        const rows = json.values;
         const headers = rows[0];
-        const nameIndex = headers.indexOf("Name/नाम");
-        const phoneIndex = headers.indexOf("Phone No. of Applicant/आवेदक का फ़ोन नंबर");
-        const dobIndex = headers.indexOf("Date of birth/जन्म की तारीख");
+
+        const nameIndex = headers.indexOf("Name");
+        const phoneIndex = headers.indexOf("Phone");
+        const dobIndex = headers.indexOf("Date of birth");
 
         if (nameIndex === -1 || dobIndex === -1) {
-            console.error("Required columns not found in CSV.");
+            console.error("Required columns not found in the sheet.");
             return;
         }
 
@@ -45,7 +51,7 @@ async function loadBirthdays(selectedMonth = "") {
 
         displayBirthdays(birthdays, todayMonthDay, selectedMonth);
     } catch (error) {
-        console.error("Error loading CSV:", error);
+        console.error("Error loading data from Google Sheets:", error);
     }
 }
 
@@ -56,13 +62,13 @@ function displayBirthdays(birthdays, todayMonthDay, selectedMonth) {
     todayDiv.innerHTML = "";
     birthdayListDiv.innerHTML = "";
 
-    let hasBirthdays = false;
+    let hasTodayBirthdays = false;
+    let hasMonthBirthdays = false;
 
     birthdays.forEach(member => {
         const isToday = member.dob === todayMonthDay;
         const isMatchingMonth = !selectedMonth || member.monthOnly === selectedMonth;
 
-        // Always show today's birthdays at the top
         if (isToday || isMatchingMonth) {
             const div = document.createElement("div");
             div.classList.add("birthday-item");
@@ -75,15 +81,19 @@ function displayBirthdays(birthdays, todayMonthDay, selectedMonth) {
 
             if (isToday) {
                 todayDiv.appendChild(div);
+                hasTodayBirthdays = true;
             } else {
                 birthdayListDiv.appendChild(div);
+                hasMonthBirthdays = true;
             }
-
-            hasBirthdays = true;
         }
     });
 
-    if (!hasBirthdays) {
+    if (!hasTodayBirthdays) {
+        todayDiv.innerHTML = "<p>No birthdays today.</p>";
+    }
+
+    if (!hasMonthBirthdays) {
         birthdayListDiv.innerHTML = "<p>No birthdays found for this month.</p>";
     }
 }
@@ -91,10 +101,6 @@ function displayBirthdays(birthdays, todayMonthDay, selectedMonth) {
 function filterByMonth() {
     const selectedMonth = document.getElementById("monthSelect").value;
     loadBirthdays(selectedMonth);
-}
-
-function goBack() {
-    window.history.back();
 }
 
 document.addEventListener("DOMContentLoaded", () => loadBirthdays());

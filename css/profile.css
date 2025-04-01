@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #c7a777; /* Matching theme */
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #F5DEB3;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: #600000;
+    color: white;
+    border-radius: 10px;
+}
+
+.profile-photo {
+    flex-shrink: 0;
+}
+
+.profile-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+}
+
+.profile-info {
+    text-align: left;
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.contact-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-icons a {
+    background: white;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    color: #600000;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+.contact-icons a:hover {
+    background: #FFD700;
+    color: #600000;
+}
+
+.profile-section {
+    background: white;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.profile-section h3 {
+    background: #600000;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.profile-section p {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.back-button {
+    background-color: #600000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.back-button:hover {
+    background-color: #800000;
+}
+
+
+
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-info {
+        text-align: center;
+        margin: 10px 0;
+    }
+    .contact-icons {
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

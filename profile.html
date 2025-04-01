@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="./css/profile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Header -->
+        <button id="backButton" class="back-button">⬅ Back</button>
+
+        <div class="profile-header">
+            <img id="Photo" src="default.jpg" alt="Profile Photo">
+            <div class="profile-info">
+                <h2 id="Name">Loading...</h2>
+                <p id="Father">Loading...</p>
+                <div class="contact-icons">
+                    <a id="whatsapp-link" href="#" target="_blank" title="WhatsApp">📱</a>
+                    <a id="phone-link" href="#" target="_blank" title="Call">📞</a>
+                    <a id="email-link" href="#" target="_blank" title="Email">✉️</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="profile-section">
+            <h3>Personal Information</h3>
+            <p><strong>Date of Birth:</strong> <span id="Date of birth">Loading...</span></p>
+            <p><strong>Blood Group:</strong> <span id="blood">Loading...</span></p>
+            <p><strong>Occupation:</strong> <span id="occupation">Loading...</span></p>
+        </div>
+
+        <!-- Address Section -->
+        <div class="profile-section">
+            <h3>Address</h3>
+            <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+            <p><strong>Phone:</strong> <span id="phone">Loading...</span></p>
+        </div>
+    </div>
+
+    <!-- Include Profile.js -->
+    <script src="./js/profile.js"></script>
+</body>
+</html>

@@ -14,38 +14,44 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     localStorage.removeItem("userEmail");
     localStorage.removeItem("userName");
 
+    // 🛠️ Google Sheets API Details
+    const sheetID = "1qf9dzQUAgSateFjpU9fs6JYrjkIo9T1_peEiXSaMg5I";  // Replace with your actual Sheet ID
+    const apiKey = "AIzaSyC-vs4GAthKrNahNVJ6qwYZ0BFpAPAnad8";  // Replace with your actual API Key
+    const sheetName = "data";  // Change if your sheet name is different
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`;
+
     try {
-        let response = await fetch("./assets/filtered_members.csv");
+        let response = await fetch(url);
         if (!response.ok) {
-            throw new Error("Failed to load CSV file. Check the file path.");
+            throw new Error("Failed to load data from Google Sheets.");
         }
 
-        let csvText = await response.text();
-        let rows = csvText.trim().split("\n").map(row => row.split(","));
+        let data = await response.json();
+        let rows = data.values;
 
-        if (rows.length < 2) {
-            throw new Error("CSV file is empty or formatted incorrectly.");
+        if (!rows || rows.length < 2) {
+            throw new Error("Google Sheet is empty or formatted incorrectly.");
         }
 
         let headers = rows[0].map(h => h.trim().toLowerCase());
-        let emailIndex = headers.indexOf("email of applicant/आवेदक का ईमेल".toLowerCase());
-        let phoneIndex = headers.indexOf("phone no. of applicant/आवेदक का फ़ोन नंबर".toLowerCase());
+        let emailIndex = headers.indexOf("Email".toLowerCase());
+        let phoneIndex = headers.indexOf("Phone".toLowerCase());
+        let nameIndex = headers.indexOf("Name".toLowerCase());
 
-        if (emailIndex === -1 || phoneIndex === -1) {
-            throw new Error("CSV must contain 'Email' and 'Phone Number' columns.");
+        if (emailIndex === -1 || phoneIndex === -1 || nameIndex === -1) {
+            throw new Error("Required columns not found in Google Sheet.");
         }
 
         let isValid = false;
         let userName = "";
 
-        rows.forEach((row, i) => {
-            if (i === 0) return;
+        rows.slice(1).forEach(row => {
             let csvEmail = row[emailIndex]?.trim().toLowerCase() || "";
             let csvPhone = row[phoneIndex]?.trim() || "";
 
             if (csvEmail === email && csvPhone === phone) {
                 isValid = true;
-                userName = row[0]; // Assuming first column is the user's name
+                userName = row[nameIndex] || "User"; // Default to "User" if name is missing
             }
         });
 
@@ -56,7 +62,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             localStorage.setItem("userEmail", email);
             localStorage.setItem("userName", userName);
 
-            // ✅ Add a delay before redirecting
+            // ✅ Redirect to dashboard after delay
             setTimeout(() => {
                 window.location.href = "dashboard.html";
             }, 500);
