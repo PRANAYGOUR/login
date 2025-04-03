@@ -1,4 +1,4 @@
-const apiUrl = "https://script.google.com/macros/s/AKfycbwONa1aYVYmfWRaqVYuw2wnAPreF-bIkpAUaMo74aeEFS60O4RfyI6rDTLUFhLUrnVc3Q/exec"; // Replace with your Web App URL
+const apiUrl = "https://script.google.com/macros/s/AKfycbwWtCiP3Ex2GrqXR58rLg7wOuc5xC0KkBDLrxGUVeuJGpqsetQEZz_7yvccgmUb9Hdo/exec"; // Replace with your Web App URL
 
 document.addEventListener("DOMContentLoaded", loadEvents);
 
