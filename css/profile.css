@@ -18,7 +18,6 @@ body {
 .profile-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 20px;
     background: #600000;
     color: white;
@@ -38,9 +37,9 @@ body {
 }
 
 .profile-info {
-    text-align: left;
     flex-grow: 1;
     margin-left: 15px;
+    text-align: left;
 }
 
 .profile-info h2 {
@@ -48,31 +47,43 @@ body {
     font-size: 22px;
 }
 
+/* Contact Icons */
 .contact-icons {
     display: flex;
-    gap: 10px;
+    gap: 15px; /* Increased gap */
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .contact-icons a {
     background: white;
-    padding: 8px;
+    padding: 10px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 40px; /* Fixed size */
+    height: 40px;
     text-decoration: none;
     color: #600000;
-    font-size: 18px;
-    transition: background 0.3s;
+    font-size: 22px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.contact-icons a img {
+    width: 205px; /* Ensures icons are of equal size */
+    height: 35px;
+    object-fit: contain;
 }
 
 .contact-icons a:hover {
     background: #FFD700;
     color: #600000;
+    transform: scale(1.1); /* Slight hover effect */
 }
 
+/* Profile Sections */
 .profile-section {
     background: white;
     padding: 15px;
@@ -97,7 +108,7 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-
+/* Back Button */
 .back-button {
     background-color: #600000;
     color: white;
@@ -113,8 +124,7 @@ body {
     background-color: #800000;
 }
 
-
-
+/* Responsive Fixes */
 @media (max-width: 600px) {
     .profile-header {
         flex-direction: column;
@@ -127,5 +137,15 @@ body {
     .contact-icons {
         justify-content: center;
         margin-top: 10px;
+        gap: 10px; /* Reduce gap for smaller screens */
+    }
+    .contact-icons a {
+        width: 35px; /* Smaller size for small screens */
+        height: 35px;
+        font-size: 18px;
+    }
+    .contact-icons a img {
+        width: 20px;
+        height: 20px;
     }
 }
